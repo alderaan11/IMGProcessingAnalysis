@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
    allocation_tableau(ImgIn, OCTET, nTaille3);
    lire_image_ppm(cNomImgLue, ImgIn, nH * nW);
    allocation_tableau(ImgDilat, OCTET, nTaille3);
-      lire_image_ppm(cNomImgDilat, ImgIn, nH * nW);
+    lire_image_ppm(cNomImgDilat, ImgDilat, nH * nW);
 
 	allocation_tableau(ImgDiff, OCTET, nTaille3)
     // Calculer la différence entre l'image originale et l'image dilatée
