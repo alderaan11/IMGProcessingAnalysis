@@ -39,26 +39,37 @@ int main(int argc, char *argv[]){
     }
 
     int k = 0;
-    while(histo[k] == 0 && k < 256){
+    while(histo[k] == 0 && k < 255){
         k++;
     }
     x1 = k;
     printf("x1 : %d, %d\n", k, x1);
 
-    while(histo[k]!=0 && k < 256){
-        k++;
+    for (int i = x1; i < 255; i++){
+        if(histo[i] == 0) {
+            x2 = i-1;
+            break;
+        }
+    }
+   
+
+    //int alpha = 255 / (x2 - x1);
+    //int beta = (-255)*x1 / (x2 -x1);
+
+    int alpha = (-255)*x1/(x2-x1);
+    int beta = 255/(x2-x1);
+
+    printf("alpha : %d, beta : %d\n", alpha, beta);
+
+    for (int i = 0; i < nH; i++){
+        for (int j = 0; j < nW; j++){
+            ImgOut[i*nW+j] = alpha + (ImgIn[i*nW+j] * beta);
+        }
     }
 
-    x2 = k-1;
-
-    float alpha = 255 * x1 / (x2 - x1);
-    float beta = (-255) * x2 / (x2 -x1);
+    ecrire_image_pgm(cNomImgOut, ImgOut, nH, nW);
 
     
-    int histo2[255];
-    for (int i = 0; i < 255; i++){
-        
-    }
 
     free(ImgIn);
 
