@@ -9,7 +9,7 @@ int main(int argc, char *argv[]) {
     float fR[256] = {0}, fB[256] = {0};  // Fonctions de répartition
     int T[256];  // Table de correspondance entre les niveaux de gris
     OCTET *ImgR, *ImgB, *ImgOut;
-    int nTaille, nH, nW;
+    int nTaille,nTaille2, nH, nH2, nW2, nW;
 
     if (argc < 4) {
         printf("Usage: %s <image_ref.pgm> <image_a_transformer.pgm> <image_resultat.pgm>\n", argv[0]);
@@ -20,16 +20,20 @@ int main(int argc, char *argv[]) {
     sscanf(argv[2], "%s", cB);
     sscanf(argv[3], "%s", cNomImgEcrite);
 
+    printf("couccou1");
     lire_nb_lignes_colonnes_image_pgm(cR, &nH, &nW);
     nTaille = nH * nW;
+lire_nb_lignes_colonnes_image_pgm(cB,&nH2,&nW2);
+    nTaille2 = nH2 * nW2;
 
     allocation_tableau(ImgR, OCTET, nTaille);
     allocation_tableau(ImgB, OCTET, nTaille);
     allocation_tableau(ImgOut, OCTET, nTaille);
-
+printf("couccou1");
     lire_image_pgm(cR, ImgR, nTaille);
-    lire_image_pgm(cB, ImgB, nTaille);
-
+    printf("couccou1");
+    lire_image_pgm(cB, ImgB, nTaille2);
+    printf("%d %d\n", nTaille, nTaille2);
     // Calcul des histogrammes
     for (int i = 0; i < nTaille; i++) {
         hR[ImgR[i]]++;
@@ -77,7 +81,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < nTaille; i++) {
         ImgOut[i] = T[ImgB[i]];
     }
-
+printf("couccou1");
     // Sauvegarde de l'image spécifiée
     ecrire_image_pgm(cNomImgEcrite, ImgOut, nH, nW);
 
