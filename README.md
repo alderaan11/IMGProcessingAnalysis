@@ -1,2 +1,2 @@
 # IMGProcessingAnalysis
-Library for image processing in cpp (for my extra class)
+Library for image processing in c++
